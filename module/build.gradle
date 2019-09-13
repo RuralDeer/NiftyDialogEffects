@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 5
+        versionName "1.2.2"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+publish {
+    userOrg = 'ruraldeer'         //bintray注册的用户名
+    groupId = 'com.cn.dialog'    //compile引用时的第1部分groupId，一般为包名
+    artifactId = 'NiftyDialog'     //compile引用时的第2部分项目名，这个需要与我们之前创建的package的Name一样，要不会上传失败
+    publishVersion = '1.0.0'      //compile引用时的第3部分版本号
+    desc = '对NiftyDialogEffects的优化'//描述  随便写
+    website = 'https://github.com/RuralDeer/NiftyDialogEffects'//项目的网页，可以写源码的GitHub地址
+}
