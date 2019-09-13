@@ -288,6 +288,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     }
 
     private void toggleView(View view, Object obj) {
+        if(null == view) return;
         if (obj == null) {
             view.setVisibility(View.GONE);
         } else {
