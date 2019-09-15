@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,7 +30,7 @@ publish {
     userOrg = 'ruraldeer'         //bintray注册的用户名
     groupId = 'com.cn.dialog'    //compile引用时的第1部分groupId，一般为包名
     artifactId = 'NiftyDialog'     //compile引用时的第2部分项目名，这个需要与我们之前创建的package的Name一样，要不会上传失败
-    publishVersion = '1.0.2'      //compile引用时的第3部分版本号
+    publishVersion = '1.0.3'      //compile引用时的第3部分版本号
     desc = 'NiftyDialogEffects-update'//描述  随便写
     website = 'https://github.com/RuralDeer/NiftyDialogEffects'//项目的网页，可以写源码的GitHub地址
 }

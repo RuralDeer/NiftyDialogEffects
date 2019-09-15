@@ -228,6 +228,16 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         return this;
     }
 
+    public NiftyDialogBuilder withNegativeButtonEnable(boolean enable) {
+        mNegativeBtn.setEnabled(enable);
+        return this;
+    }
+
+    public NiftyDialogBuilder withPositiveButtonEnable(boolean enable) {
+        mPositiveBtn.setEnabled(enable);
+        return this;
+    }
+
     public NiftyDialogBuilder withButtonDrawable(int resid) {
         mNegativeBtn.setBackgroundResource(resid);
         mPositiveBtn.setBackgroundResource(resid);
@@ -298,7 +308,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     }
 
     private void toggleView(View view, Object obj) {
-        if(null == view) return;
+        if (null == view) return;
         if (obj == null) {
             view.setVisibility(View.GONE);
         } else {
