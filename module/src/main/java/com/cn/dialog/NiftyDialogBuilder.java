@@ -234,6 +234,16 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         return this;
     }
 
+    public NiftyDialogBuilder withNegativeButtonDrawable(int resid) {
+        mNegativeBtn.setBackgroundResource(resid);
+        return this;
+    }
+
+    public NiftyDialogBuilder withPositiveButtonDrawable(int resid) {
+        mPositiveBtn.setBackgroundResource(resid);
+        return this;
+    }
+
     public NiftyDialogBuilder withNegativeText(CharSequence text) {
         mNegativeBtn.setVisibility(View.VISIBLE);
         mNegativeBtn.setText(text);
