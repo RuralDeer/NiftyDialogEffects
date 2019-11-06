@@ -6,8 +6,11 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -46,6 +49,8 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     private final String defDialogColor = "#FFE74C3C";
 
     private AnimationStyle type = null;
+
+    private RelativeLayout mTitleTemplate;
 
     private LinearLayout mLinearLayoutView;
 
@@ -105,11 +110,13 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     private void init(Context context) {
         mDialogView = View.inflate(context, R.layout.dialog_nifty_layout, null);
+        mTitleTemplate = (RelativeLayout) mDialogView.findViewById(R.id.title_template);
         mLinearLayoutView = (LinearLayout) mDialogView.findViewById(R.id.parentPanel);
         mRelativeLayoutView = (RelativeLayout) mDialogView.findViewById(R.id.main);
         mLinearLayoutTopView = (LinearLayout) mDialogView.findViewById(R.id.topPanel);
         mLinearLayoutMsgView = (LinearLayout) mDialogView.findViewById(R.id.contentPanel);
         mFrameLayoutCustomView = (FrameLayout) mDialogView.findViewById(R.id.customPanel);
+        mTitleTemplate.setVisibility(View.GONE);
 
         mTitle = (TextView) mDialogView.findViewById(R.id.alertTitle);
         mMessage = (TextView) mDialogView.findViewById(R.id.message);
@@ -162,6 +169,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public NiftyDialogBuilder withTitle(CharSequence title) {
         toggleView(mLinearLayoutTopView, title);
         mTitle.setText(title);
+        mTitleTemplate.setVisibility(View.VISIBLE);
         return this;
     }
 
@@ -210,11 +218,13 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     public NiftyDialogBuilder withIcon(int drawableResId) {
         mIcon.setImageResource(drawableResId);
+        mTitleTemplate.setVisibility(View.VISIBLE);
         return this;
     }
 
     public NiftyDialogBuilder withIcon(Drawable icon) {
         mIcon.setImageDrawable(icon);
+        mTitleTemplate.setVisibility(View.VISIBLE);
         return this;
     }
 

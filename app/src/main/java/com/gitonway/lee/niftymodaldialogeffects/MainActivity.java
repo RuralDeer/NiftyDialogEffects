@@ -70,13 +70,13 @@ public class MainActivity extends Activity {
         }
 
         dialogBuilder
-                .withTitle("Modal Dialog")                                  //.withTitle(null)  no title
+                //.withTitle("Modal Dialog")                                  //.withTitle(null)  no title
                 .withTitleColor("#FFFFFF")                                  //def
                 .withDividerColor("#11000000")                              //def
-                .withMessage("This is a modal Dialog.")                     //.withMessage(null)  no Msg
+                .withMessage("GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名GitHub")                     //.withMessage(null)  no Msg
                 .withMessageColor("#FFFFFFFF")                              //def  | withMessageColor(int resid)
                 .withDialogColor("#FFE74C3C")                               //def  | withDialogColor(int resid)                               //def
-                .withIcon(getResources().getDrawable(R.drawable.icon))
+                //.withIcon(getResources().getDrawable(R.drawable.icon))
                 .isCancelableOnTouchOutside(true)                           //def    | isCancelable(true)
                 .withDuration(700)                                          //def
                 .withEffect(effect)                                         //def AnimationStyle.Slidetop

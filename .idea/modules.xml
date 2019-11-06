@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NiftyDialogEffects.iml" filepath="$PROJECT_DIR$/NiftyDialogEffects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/NiftyDialogEffects-app.iml" filepath="$PROJECT_DIR$/app/NiftyDialogEffects-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module/NiftyDialogEffects-module.iml" filepath="$PROJECT_DIR$/module/NiftyDialogEffects-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/github-NiftyDialogEffects.iml" filepath="$PROJECT_DIR$/github-NiftyDialogEffects.iml" />
       <module fileurl="file://$PROJECT_DIR$/module/module.iml" filepath="$PROJECT_DIR$/module/module.iml" />
     </modules>
   </component>
