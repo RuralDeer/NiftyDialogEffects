@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +132,6 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         this.setOnShowListener(new OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-
                 mLinearLayoutView.setVisibility(View.VISIBLE);
                 if (type == null) {
                     type = AnimationStyle.Slidetop;
@@ -186,12 +187,14 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public NiftyDialogBuilder withMessage(int textResId) {
         toggleView(mLinearLayoutMsgView, textResId);
         mMessage.setText(textResId);
+        mMessage.setVisibility(View.VISIBLE);
         return this;
     }
 
     public NiftyDialogBuilder withMessage(CharSequence msg) {
         toggleView(mLinearLayoutMsgView, msg);
         mMessage.setText(msg);
+        mMessage.setVisibility(View.VISIBLE);
         return this;
     }
 
@@ -328,6 +331,45 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     @Override
     public void show() {
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(outMetrics);
+        int widthPixels = outMetrics.widthPixels;
+        final int heightPixels = outMetrics.heightPixels;
+        final int maxHeight = heightPixels / 5 * 3;
+
+        Log.d("NiftyDialogBuilder", "heightPixels:" + heightPixels);
+
+        final ViewGroup.LayoutParams messageParams = mMessage.getLayoutParams();
+        final ViewGroup.LayoutParams customViewParams = mFrameLayoutCustomView.getLayoutParams();
+
+
+        mFrameLayoutCustomView.post(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d("NiftyDialogBuilder", "maxHeight:" + maxHeight);
+
+                Log.d("NiftyDialogBuilder", "mMessage.getHeight():" + mMessage.getHeight());
+
+                Log.d("NiftyDialogBuilder", "mRelativeLayoutView.getHeight():" + mFrameLayoutCustomView.getHeight());
+
+                if (mFrameLayoutCustomView.getHeight() > maxHeight) {
+                    customViewParams.height = maxHeight;
+                    mFrameLayoutCustomView.setLayoutParams(customViewParams);
+                }
+
+                if (mMessage.getHeight() > maxHeight) {
+                    messageParams.height = maxHeight;
+                    mMessage.setLayoutParams(messageParams);
+                }
+
+                Log.e("NiftyDialogBuilder", "mMessage.getHeight():" + mMessage.getHeight());
+
+                Log.e("NiftyDialogBuilder", "mRelativeLayoutView.getHeight():" + mFrameLayoutCustomView.getHeight());
+
+            }
+        });
         super.show();
     }
 

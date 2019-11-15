@@ -3,7 +3,7 @@ package com.gitonway.lee.niftymodaldialogeffects;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.cn.dialog.AnimationStyle;
 import com.cn.dialog.NiftyDialogBuilder;
@@ -69,33 +69,62 @@ public class MainActivity extends Activity {
                 break;
         }
 
+        String json = "1.修复趋势图点击崩溃问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题|2.修复交易列表排序问题";
+        json = json.replaceAll("\\|", "\n");
+
+        View view = View.inflate(this, R.layout.custom_view, null);
+        TextView textView = view.findViewById(R.id.textView);
+        textView.setText(json);
+
         dialogBuilder
-                //.withTitle("Modal Dialog")                                  //.withTitle(null)  no title
-                .withTitleColor("#FFFFFF")                                  //def
-                .withDividerColor("#11000000")                              //def
-                .withMessage("GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名GitHub")                     //.withMessage(null)  no Msg
-                .withMessageColor("#FFFFFFFF")                              //def  | withMessageColor(int resid)
-                .withDialogColor("#FFE74C3C")                               //def  | withDialogColor(int resid)                               //def
-                //.withIcon(getResources().getDrawable(R.drawable.icon))
-                .isCancelableOnTouchOutside(true)                           //def    | isCancelable(true)
-                .withDuration(700)                                          //def
-                .withEffect(effect)                                         //def AnimationStyle.Slidetop
-                .withNegativeText("OK")                                      //def gone
-                .withPositiveText("Cancel")                                  //def gone
-                .setCustomView(R.layout.custom_view, v.getContext())         //.setCustomView(View or ResId,context)
+                .withTitle("请再次确认订单信息")
+                .withMessage("请再次确认订单信息")
+                .withDuration(300)
+                .withEffect(AnimationStyle.RotateBottom)
+                //.setCustomView(view, this)
+                .withNegativeText("取消")
+                .withPositiveText("确认收购")
                 .setNegativeListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "i'm btn1", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .setPositiveListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "i'm btn2", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .show();
+
+//        dialogBuilder
+//                .withTitle("Modal Dialog")                                  //.withTitle(null)  no title
+//                .withTitleColor("#FFFFFF")                                  //def
+//                .withDividerColor("#11000000")                              //def
+//                //.withMessage(json)                     //.withMessage(null)  no Msg
+//                .withMessageColor("#FFFFFFFF")                              //def  | withMessageColor(int resid)
+//                .withDialogColor("#FFE74C3C")                               //def  | withDialogColor(int resid)                               //def
+//                //.withIcon(getResources().getDrawable(R.drawable.icon))
+//                .isCancelableOnTouchOutside(true)                           //def    | isCancelable(true)
+//                .withDuration(700)                                          //def
+//                .withEffect(effect)                                         //def AnimationStyle.Slidetop
+//                .withNegativeText("OK")                                      //def gone
+//                .withPositiveText("Cancel")                                  //def gone
+//                .setCustomView(view, v.getContext())         //.setCustomView(View or ResId,context)
+//                .setNegativeListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(v.getContext(), "i'm btn1", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .setPositiveListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(v.getContext(), "i'm btn2", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .show();
 
     }
 
