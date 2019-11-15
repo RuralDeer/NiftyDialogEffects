@@ -64,6 +64,8 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     private FrameLayout mFrameLayoutCustomView;
 
+    private RelativeLayout mRelativeLayoutParentPanel;
+
     private View mDialogView;
 
     private View mDivider;
@@ -118,6 +120,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         mLinearLayoutTopView = (LinearLayout) mDialogView.findViewById(R.id.topPanel);
         mLinearLayoutMsgView = (LinearLayout) mDialogView.findViewById(R.id.contentPanel);
         mFrameLayoutCustomView = (FrameLayout) mDialogView.findViewById(R.id.customPanel);
+        mRelativeLayoutParentPanel = (RelativeLayout) mDialogView.findViewById(R.id.relativeLayoutParentPanel);
         mTitleTemplate.setVisibility(View.GONE);
 
         mTitle = (TextView) mDialogView.findViewById(R.id.alertTitle);
@@ -338,35 +341,30 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         final int heightPixels = outMetrics.heightPixels;
         final int maxHeight = heightPixels / 5 * 3;
 
-        Log.d("NiftyDialogBuilder", "heightPixels:" + heightPixels);
-
-        final ViewGroup.LayoutParams messageParams = mMessage.getLayoutParams();
-        final ViewGroup.LayoutParams customViewParams = mFrameLayoutCustomView.getLayoutParams();
-
-
+        final ViewGroup.LayoutParams mMessageParams = mMessage.getLayoutParams();
+        final ViewGroup.LayoutParams mCustomViewParams = mFrameLayoutCustomView.getLayoutParams();
+        final RelativeLayout.LayoutParams  mRelativeLayoutParentPanelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
         mFrameLayoutCustomView.post(new Runnable() {
             @Override
             public void run() {
 
-                Log.d("NiftyDialogBuilder", "maxHeight:" + maxHeight);
-
-                Log.d("NiftyDialogBuilder", "mMessage.getHeight():" + mMessage.getHeight());
-
-                Log.d("NiftyDialogBuilder", "mRelativeLayoutView.getHeight():" + mFrameLayoutCustomView.getHeight());
-
                 if (mFrameLayoutCustomView.getHeight() > maxHeight) {
-                    customViewParams.height = maxHeight;
-                    mFrameLayoutCustomView.setLayoutParams(customViewParams);
+                    mCustomViewParams.height = maxHeight;
+                    mFrameLayoutCustomView.setLayoutParams(mCustomViewParams);
+
+                    mRelativeLayoutParentPanelParams.topMargin = 0;
+                    mRelativeLayoutParentPanelParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+                    mRelativeLayoutParentPanel.setLayoutParams(mRelativeLayoutParentPanelParams);
                 }
 
                 if (mMessage.getHeight() > maxHeight) {
-                    messageParams.height = maxHeight;
-                    mMessage.setLayoutParams(messageParams);
+                    mMessageParams.height = maxHeight;
+                    mMessage.setLayoutParams(mMessageParams);
+
+                    mRelativeLayoutParentPanelParams.topMargin = 0;
+                    mRelativeLayoutParentPanelParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+                    mRelativeLayoutParentPanel.setLayoutParams(mRelativeLayoutParentPanelParams);
                 }
-
-                Log.e("NiftyDialogBuilder", "mMessage.getHeight():" + mMessage.getHeight());
-
-                Log.e("NiftyDialogBuilder", "mRelativeLayoutView.getHeight():" + mFrameLayoutCustomView.getHeight());
 
             }
         });

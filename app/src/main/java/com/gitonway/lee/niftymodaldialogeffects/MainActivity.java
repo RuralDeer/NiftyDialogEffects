@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
                 .withMessage("请再次确认订单信息")
                 .withDuration(300)
                 .withEffect(AnimationStyle.RotateBottom)
-                //.setCustomView(view, this)
+               // .setCustomView(view, this)
                 .withNegativeText("取消")
                 .withPositiveText("确认收购")
                 .setNegativeListener(new View.OnClickListener() {
